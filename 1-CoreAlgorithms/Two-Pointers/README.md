@@ -41,8 +41,6 @@ Consider Two Pointers when:
 ---
 
 
-# 🧩 Two Pointers – Practice Problems & Summary
-
 ## 🧩 Practice Problems
 
 Here are some popular and essential problems to master the **Two Pointers** technique:
