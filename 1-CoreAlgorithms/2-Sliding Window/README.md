@@ -1,4 +1,4 @@
-# 🚪 Sliding Window Technique – Explained
+# 🚪 Sliding Window Technique 
 
 The **Sliding Window** technique is a powerful and efficient pattern used to solve problems involving **contiguous sequences** in arrays or strings. It's especially useful when optimizing **subarray or substring problems** that involve sum, length, or frequency of elements.
 
