@@ -104,5 +104,5 @@ def binary_search(nums, target):
 
 > Use return right when you need the last index ≤ target (upper bound / last occurrence).
 
-> Mastering this return logic is key to solving a wide range of problems using binary search.
+Mastering this return logic is key to solving a wide range of problems using binary search.
 
