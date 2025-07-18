@@ -47,9 +47,9 @@ Use the prefix sum technique when:
 
 
 
-# ✅ Prefix Sum: Example, Code, and Use Cases
+# Prefix Sum: Example, Code, and Use Cases
 
-## ✅ Example
+## Example
 
 ```python
 arr = [2, 4, 6, 8, 10]
