@@ -36,6 +36,59 @@ Focus on the **4 most practical sorting algorithms**:
 - Consistent O(n log n) time complexity
 - Not in-place (O(n) space)
 
+```
+def merge_sort(arr, depth=0):
+    indent = "  " * depth  # just for print formatting
+    if len(arr) <= 1:
+        print(f"{indent}Returning: {arr}")
+        return arr
+
+    mid = len(arr) // 2
+    print(f"{indent}Splitting: {arr}")
+    left = merge_sort(arr[:mid], depth + 1)
+    right = merge_sort(arr[mid:], depth + 1)
+    merged = merge(left, right, indent)
+    print(f"{indent}Merging: {left} + {right} => {merged}")
+    return merged
+
+def merge(left, right, indent=""):
+    res = []
+    i = j = 0
+    print(f"{indent}Start merging:")
+    print(f"{indent}  Left:  {left}")
+    print(f"{indent}  Right: {right}")
+    
+    while i < len(left) and j < len(right):
+        print(f"{indent}  Comparing: left[{i}]={left[i]} vs right[{j}]={right[j]}")
+        if left[i] <= right[j]:
+            res.append(left[i])
+            print(f"{indent}    → Picked {left[i]} from left")
+            i += 1
+        else:
+            res.append(right[j])
+            print(f"{indent}    → Picked {right[j]} from right")
+            j += 1
+        print(f"{indent}    Result so far: {res}")
+    
+    # Append any remaining items
+    while i < len(left):
+        res.append(left[i])
+        print(f"{indent}    → Appending remaining {left[i]} from left")
+        i += 1
+    while j < len(right):
+        res.append(right[j])
+        print(f"{indent}    → Appending remaining {right[j]} from right")
+        j += 1
+
+    print(f"{indent}  Finished merge: {res}\n")
+    return res
+
+# Example array
+arr = [5, 2, 8, 1, 3]
+print("Starting Merge Sort...\n")
+sorted_arr = merge_sort(arr)
+print("\nFinal sorted:", sorted_arr)
+```
 ---
 
 ## 2️⃣ Quick Sort
@@ -59,6 +112,30 @@ Focus on the **4 most practical sorting algorithms**:
 - In-place (O(log n) stack space with good pivoting)
 - Recursive
 
+```
+Starting Quick Sort...
+
+QuickSort on: [4, 1, 7, 3, 2]
+Partitioning: [4, 1, 7, 3, 2], Pivot = 2
+  Comparing arr[0]=4 < 2
+  Comparing arr[1]=1 < 2
+    Swapped: [1, 4, 7, 3, 2]
+  Comparing arr[2]=7 < 2
+  Comparing arr[3]=3 < 2
+  Moved pivot to index 1: [1, 2, 7, 3, 4]
+After partition: [1, 2, 7, 3, 4] (pivot index 1)
+
+  QuickSort on: [7, 3, 4]
+  Partitioning: [7, 3, 4], Pivot = 4
+    Comparing arr[2]=7 < 4
+    Comparing arr[3]=3 < 4
+      Swapped: [1, 2, 3, 7, 4]
+    Moved pivot to index 3: [1, 2, 3, 4, 7]
+  After partition: [1, 2, 3, 4, 7] (pivot index 3)
+
+
+Final sorted: [1, 2, 3, 4, 7]
+```
 ---
 
 ## 3️⃣ Heap Sort
@@ -81,7 +158,74 @@ Focus on the **4 most practical sorting algorithms**:
 - Deterministic O(n log n)
 - In-place
 - No recursion
+```
+Initial array: [3, 9, 4, 1, 7]
+🔨 Building max heap...
 
+Heapifying at index 1 (value=9), heap size=5
+  Left child index 3, value=1
+  Right child index 4, value=7
+  No swap needed
+Heap after heapify(1): [3, 9, 4, 1, 7]
+
+Heapifying at index 0 (value=3), heap size=5
+  Left child index 1, value=9
+  Right child index 2, value=4
+  -> Swap needed: arr[0]=3 < arr[1]=9
+  After swap: [9, 3, 4, 1, 7]
+  Heapifying at index 1 (value=3), heap size=5
+    Left child index 3, value=1
+    Right child index 4, value=7
+    -> Swap needed: arr[1]=3 < arr[4]=7
+    After swap: [9, 7, 4, 1, 3]
+    Heapifying at index 4 (value=3), heap size=5
+      No swap needed
+Heap after heapify(0): [9, 7, 4, 1, 3]
+
+📦 Extracting elements from heap...
+
+↔️  Swapping root arr[0]=9 with arr[4]=3
+  After swap: [3, 7, 4, 1, 9]
+Heapifying at index 0 (value=3), heap size=4
+  Left child index 1, value=7
+  Right child index 2, value=4
+  -> Swap needed: arr[0]=3 < arr[1]=7
+  After swap: [7, 3, 4, 1, 9]
+  Heapifying at index 1 (value=3), heap size=4
+    Left child index 3, value=1
+    No swap needed
+Heap after extraction at index 4: [7, 3, 4, 1, 9]
+
+↔️  Swapping root arr[0]=7 with arr[3]=1
+  After swap: [1, 3, 4, 7, 9]
+Heapifying at index 0 (value=1), heap size=3
+  Left child index 1, value=3
+  Right child index 2, value=4
+  -> Swap needed: arr[0]=1 < arr[2]=4
+  After swap: [4, 3, 1, 7, 9]
+  Heapifying at index 2 (value=1), heap size=3
+    No swap needed
+Heap after extraction at index 3: [4, 3, 1, 7, 9]
+
+↔️  Swapping root arr[0]=4 with arr[2]=1
+  After swap: [1, 3, 4, 7, 9]
+Heapifying at index 0 (value=1), heap size=2
+  Left child index 1, value=3
+  -> Swap needed: arr[0]=1 < arr[1]=3
+  After swap: [3, 1, 4, 7, 9]
+  Heapifying at index 1 (value=1), heap size=2
+    No swap needed
+Heap after extraction at index 2: [3, 1, 4, 7, 9]
+
+↔️  Swapping root arr[0]=3 with arr[1]=1
+  After swap: [1, 3, 4, 7, 9]
+Heapifying at index 0 (value=1), heap size=1
+  No swap needed
+Heap after extraction at index 1: [1, 3, 4, 7, 9]
+
+
+✅ Final sorted array: [1, 3, 4, 7, 9]
+```
 ---
 
 ## 4️⃣ TimSort (Built-in in Python)
@@ -100,6 +244,22 @@ Focus on the **4 most practical sorting algorithms**:
 - Stable ✅
 - Fast in practice on real-world data
 - Optimized for performance and practical cases
+
+```
+Initial array: [5, 21, 7, 23, 19, 10, 12, 1, 3, 8]
+Insertion sorting from 0 to 9
+  Step 1: [5, 21, 7, 23, 19, 10, 12, 1, 3, 8]
+  Step 2: [5, 7, 21, 23, 19, 10, 12, 1, 3, 8]
+  Step 3: [5, 7, 21, 23, 19, 10, 12, 1, 3, 8]
+  Step 4: [5, 7, 19, 21, 23, 10, 12, 1, 3, 8]
+  Step 5: [5, 7, 10, 19, 21, 23, 12, 1, 3, 8]
+  Step 6: [5, 7, 10, 12, 19, 21, 23, 1, 3, 8]
+  Step 7: [1, 5, 7, 10, 12, 19, 21, 23, 3, 8]
+  Step 8: [1, 3, 5, 7, 10, 12, 19, 21, 23, 8]
+  Step 9: [1, 3, 5, 7, 8, 10, 12, 19, 21, 23]
+```
+
+✅ Final sorted array: [1, 3, 5, 7, 8, 10, 12, 19, 21, 23]
 
 ```python
 # Always use TimSort for general purpose in Python
