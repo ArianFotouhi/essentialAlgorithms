@@ -300,3 +300,39 @@ Unless you're implementing sorting yourself, use:
 sorted(arr)          # When you need a new sorted list
 arr.sort()           # When you can sort in-place
 ```
+
+## What does it mean the Stability?
+A sorting algorithm is stable if:
+
+> When two elements have the same key (i.e. are equal in sorting criteria), their relative order in the original list is preserved in the sorted list.
+
+example:
+```python
+people = [
+    ("Alice", 25),
+    ("Bob", 22),
+    ("Charlie", 25),
+    ("David", 22)
+]
+```
+sorting by age:
+### Stable Sort Result:
+```python
+[
+    ("Bob", 22),     # came before David in the original
+    ("David", 22),
+    ("Alice", 25),   # came before Charlie in the original
+    ("Charlie", 25)
+]
+```
+### Unstable Sort Result 
+```python
+[
+    ("David", 22),   # swapped order
+    ("Bob", 22),
+    ("Charlie", 25),
+    ("Alice", 25)
+]
+```
+> Sorting helps to get predictable, repeatable results.
+
