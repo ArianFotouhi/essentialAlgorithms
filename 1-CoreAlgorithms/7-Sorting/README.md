@@ -36,6 +36,33 @@ Focus on the **4 most practical sorting algorithms**:
 - Consistent O(n log n) time complexity
 - Not in-place (O(n) space)
 
+### 🧪 Example (Python):
+```python
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
+
+def merge(left, right):
+    res = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            res.append(left[i])
+            i += 1
+        else:
+            res.append(right[j])
+            j += 1
+    res += left[i:]
+    res += right[j:]
+    return res
+
+arr = [5, 2, 8, 1, 3]
+print(merge_sort(arr))  # Output: [1, 2, 3, 5, 8]
+```
 ---
 
 ## 2️⃣ Quick Sort
@@ -59,6 +86,28 @@ Focus on the **4 most practical sorting algorithms**:
 - In-place (O(log n) stack space with good pivoting)
 - Recursive
 
+### 🧪 Example (Python):
+```python
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low
+    for j in range(low, high):
+        if arr[j] < pivot:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+    arr[i], arr[high] = arr[high], arr[i]
+    return i
+
+arr = [4, 1, 7, 3, 2]
+quick_sort(arr, 0, len(arr) - 1)
+print(arr)  # Output: [1, 2, 3, 4, 7]
+```
 ---
 
 ## 3️⃣ Heap Sort
@@ -81,6 +130,35 @@ Focus on the **4 most practical sorting algorithms**:
 - Deterministic O(n log n)
 - In-place
 - No recursion
+
+### 🧪 Example (Python):
+```python
+def heapify(arr, n, i):
+    largest = i
+    l = 2*i + 1
+    r = 2*i + 2
+    if l < n and arr[l] > arr[largest]:
+        largest = l
+    if r < n and arr[r] > arr[largest]:
+        largest = r
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+    # Build max heap
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i)
+    # Extract elements
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]
+        heapify(arr, i, 0)
+
+arr = [3, 9, 4, 1, 7]
+heap_sort(arr)
+print(arr)  # Output: [1, 3, 4, 7, 9]
+```
 
 ---
 
@@ -105,6 +183,14 @@ Focus on the **4 most practical sorting algorithms**:
 # Always use TimSort for general purpose in Python
 sorted(arr)          # Returns new sorted list
 arr.sort()           # Sorts in place
+```
+
+```python
+arr = [("b", 2), ("a", 2), ("c", 1)]
+# Sort by second item (stable)
+arr.sort(key=lambda x: x[1])
+print(arr)  # Output: [('c', 1), ('b', 2), ('a', 2)]
+# 'b' and 'a' stay in original relative order
 ```
 
 # 🧠 Summary: Which One Should You Use?
