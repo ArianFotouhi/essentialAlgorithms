@@ -37,57 +37,71 @@ Focus on the **4 most practical sorting algorithms**:
 - Not in-place (O(n) space)
 
 ```
-def merge_sort(arr, depth=0):
-    indent = "  " * depth  # just for print formatting
-    if len(arr) <= 1:
-        print(f"{indent}Returning: {arr}")
-        return arr
+Starting Merge Sort...
 
-    mid = len(arr) // 2
-    print(f"{indent}Splitting: {arr}")
-    left = merge_sort(arr[:mid], depth + 1)
-    right = merge_sort(arr[mid:], depth + 1)
-    merged = merge(left, right, indent)
-    print(f"{indent}Merging: {left} + {right} => {merged}")
-    return merged
+Splitting: [5, 2, 8, 1, 3]
+  Splitting: [5, 2]
+    Returning: [5]
+    Returning: [2]
+  Start merging:
+    Left:  [5]
+    Right: [2]
+    Comparing: left[0]=5 vs right[0]=2
+      → Picked 2 from right
+      Result so far: [2]
+      → Appending remaining 5 from left
+    Finished merge: [2, 5]
 
-def merge(left, right, indent=""):
-    res = []
-    i = j = 0
-    print(f"{indent}Start merging:")
-    print(f"{indent}  Left:  {left}")
-    print(f"{indent}  Right: {right}")
-    
-    while i < len(left) and j < len(right):
-        print(f"{indent}  Comparing: left[{i}]={left[i]} vs right[{j}]={right[j]}")
-        if left[i] <= right[j]:
-            res.append(left[i])
-            print(f"{indent}    → Picked {left[i]} from left")
-            i += 1
-        else:
-            res.append(right[j])
-            print(f"{indent}    → Picked {right[j]} from right")
-            j += 1
-        print(f"{indent}    Result so far: {res}")
-    
-    # Append any remaining items
-    while i < len(left):
-        res.append(left[i])
-        print(f"{indent}    → Appending remaining {left[i]} from left")
-        i += 1
-    while j < len(right):
-        res.append(right[j])
-        print(f"{indent}    → Appending remaining {right[j]} from right")
-        j += 1
+  Merging: [5] + [2] => [2, 5]
+  Splitting: [8, 1, 3]
+    Returning: [8]
+    Splitting: [1, 3]
+      Returning: [1]
+      Returning: [3]
+    Start merging:
+      Left:  [1]
+      Right: [3]
+      Comparing: left[0]=1 vs right[0]=3
+        → Picked 1 from left
+        Result so far: [1]
+        → Appending remaining 3 from right
+      Finished merge: [1, 3]
 
-    print(f"{indent}  Finished merge: {res}\n")
-    return res
+    Merging: [1] + [3] => [1, 3]
+  Start merging:
+    Left:  [8]
+    Right: [1, 3]
+    Comparing: left[0]=8 vs right[0]=1
+      → Picked 1 from right
+      Result so far: [1]
+    Comparing: left[0]=8 vs right[1]=3
+      → Picked 3 from right
+      Result so far: [1, 3]
+      → Appending remaining 8 from left
+    Finished merge: [1, 3, 8]
 
-# Example array
-arr = [5, 2, 8, 1, 3]
-print("Starting Merge Sort...\n")
-sorted_arr = merge_sort(arr)
-print("\nFinal sorted:", sorted_arr)
+  Merging: [8] + [1, 3] => [1, 3, 8]
+Start merging:
+  Left:  [2, 5]
+  Right: [1, 3, 8]
+  Comparing: left[0]=2 vs right[0]=1
+    → Picked 1 from right
+    Result so far: [1]
+  Comparing: left[0]=2 vs right[1]=3
+    → Picked 2 from left
+    Result so far: [1, 2]
+  Comparing: left[1]=5 vs right[1]=3
+    → Picked 3 from right
+    Result so far: [1, 2, 3]
+  Comparing: left[1]=5 vs right[2]=8
+    → Picked 5 from left
+    Result so far: [1, 2, 3, 5]
+    → Appending remaining 8 from right
+  Finished merge: [1, 2, 3, 5, 8]
+
+Merging: [2, 5] + [1, 3, 8] => [1, 2, 3, 5, 8]
+
+Final sorted: [1, 2, 3, 5, 8]
 ```
 ---
 
