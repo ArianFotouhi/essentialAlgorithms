@@ -1,6 +1,3 @@
-def factorial(n):
-def fib(n):
-
 # 🌲 Recursion
 
 Recursion is a fundamental technique in computer science, forming the basis of algorithms like DFS (Depth-First Search), backtracking, and divide-and-conquer. It breaks a problem into smaller subproblems until reaching a base case.
