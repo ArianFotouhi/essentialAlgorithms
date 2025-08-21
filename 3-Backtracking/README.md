@@ -43,7 +43,7 @@ def backtrack(state, choices):
 
 ## 🎯 When to Use It
 
-If the problem says “find all …”, “generate all …”, or “count all …”, especially with constraints, → backtracking is a strong candidate.
+If the problem says **“find all …”**, **“generate all …”**, or **“count all …”**, especially with **constraints**, → backtracking is a strong candidate.
 
 ---
 
