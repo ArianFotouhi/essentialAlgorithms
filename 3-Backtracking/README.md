@@ -43,10 +43,7 @@ def backtrack(state, choices):
 
 ## 🎯 When to Use It
 
-- Generate permutations/combinations/subsets
-- Place items with mutual constraints (e.g., N-Queens)
-- Solve constraint satisfaction problems (e.g., Sudoku, crosswords)
-- Pathfinding with rules (word ladders with constraints, knight's tour, etc.)
+If the problem says “find all …”, “generate all …”, or “count all …”, especially with constraints, → backtracking is a strong candidate.
 
 ---
 
