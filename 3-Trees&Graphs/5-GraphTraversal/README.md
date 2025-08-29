@@ -34,7 +34,7 @@ Graph traversal means systematically visiting all vertices and edges of a graph.
 - **Union-Find (DSU):** Alternative for connectivity in undirected graphs
 - **Topological Sort:** Specialized traversal for DAGs with ordering constraints
 - **Dijkstra / Bellman-Ford / Floyd-Warshall:** Extend traversal for weighted shortest paths
-- **A* Search:** Heuristic-based pathfinding (common in AI/games)
+- **A Search:** Heuristic-based pathfinding (common in AI/games)
 
 ---
 
