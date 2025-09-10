@@ -1,4 +1,4 @@
-# Essential Algorithms: Interview & Assessment Prep
+# Essential Algorithms: Deep Dive and Assessment Prep
 
 Welcome to **Essential Algorithms**—a curated collection of core algorithmic patterns, techniques, and problems designed for coding interviews, technical assessments, and foundational CS learning.
 
