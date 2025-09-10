@@ -64,7 +64,7 @@ def dfs(i, w):
     return res
 ````
 
----
+
 
 ### Bottom-Up Tabulation
 
@@ -131,6 +131,6 @@ for i in range(n):
 * Most subset/knapsack problems are just variations of this pattern.
 * Memorization converts exponential recursion to polynomial time.
 
-```
+
 
 
