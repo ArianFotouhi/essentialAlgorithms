@@ -1,6 +1,21 @@
 # 0/1 Knapsack & Subset Sum — Pick/Not-Pick Decisions
 
-### What is 0/1 Knapsack?
+
+### The Core Idea of 0/1 Knapsack
+
+Imagine you are a thief with a bag (knapsack) that can hold up to `W` weight.
+You have n items, each with:
+
+`weight[i]`
+
+`value[i]`
+
+Your goal: maximize total value without exceeding `W`.
+
+But you have a catch: for each item, you can either take `0` of it or `1` of it — no fractions, no multiple copies.
+That’s why it’s called 0/1 Knapsack.
+
+### What is 0/1 Knapsack in more techincal language?
 A classic DP problem: given `n` items with `(weight, value)` and a capacity `W`, choose a subset of items (each at most once) to maximize value without exceeding capacity.
 
 **Subset Sum:** special case where we only care whether some subset sums to exactly a target (boolean answer).
@@ -10,7 +25,7 @@ Both use the **pick / not-pick** pattern — at each item, you decide to include
 ---
 
 ### When to Use Pick/Not-Pick DP
-- **Knapsack-like constraints:** select items under capacity/weight/limit.
+- **Knapsack-like targets (capacity):** select items under capacity/weight/limit.
 - **Subset selection problems:** find subset with target sum, equal partition, min difference.
 - **Maximize / Minimize:** profit, score, or cost.
 - **Count ways:** number of subsets reaching a sum.
