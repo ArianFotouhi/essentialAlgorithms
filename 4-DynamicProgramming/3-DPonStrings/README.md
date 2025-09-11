@@ -122,13 +122,3 @@ Think of DP when you see:
   * Subsequence → look at LCS-style DP
   * Substring → look at contiguous range DP or center expansion
 
-```
-
-This version mirrors your **Unbounded Knapsack** notes:  
-- ✅ Core Idea  
-- ✅ Comparison table  
-- ✅ DP transitions  
-- ✅ Real examples  
-- ✅ When to recognize it  
-- ✅ Quick mental rules  
-
